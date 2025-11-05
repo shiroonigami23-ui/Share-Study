@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyShare - Share Knowledge Together</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="authContainer">
+        <div class="auth-box">
+            <h1>📚 StudyShare</h1>
+            <p class="tagline">Share Knowledge, Build Community</p>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="showLogin()">Login</button>
+                <button class="tab-btn" onclick="showSignup()">Sign Up</button>
+            </div>
+
+            <div id="loginForm" class="auth-form">
+                <h2>Welcome Back</h2>
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button onclick="login()">Login</button>
+                <p class="error-msg" id="loginError"></p>
+            </div>
+
+            <div id="signupForm" class="auth-form hidden">
+                <h2>Create Account</h2>
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <input type="text" id="signupUsername" placeholder="Username" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
+                <button onclick="signup()">Sign Up</button>
+                <p class="error-msg" id="signupError"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-app hidden" id="mainApp">
+        <nav class="navbar">
+            <div class="nav-brand">📚 StudyShare</div>
+            <div class="nav-menu">
+                <button class="nav-btn active" onclick="showSection('home')">Home</button>
+                <button class="nav-btn" onclick="showSection('community')">Community</button>
+                <button class="nav-btn" onclick="showSection('profile')">Profile</button>
+                <button class="nav-btn logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <!-- Home Section -->
+            <div id="homeSection" class="section active">
+                <div class="welcome-header">
+                    <h2>Welcome, <span id="userName"></span>!</h2>
+                    <button class="btn-primary" onclick="showUploadModal()">📤 Upload Material</button>
+                </div>
+
+                <div class="files-container">
+                    <h3>📂 Shared Study Materials</h3>
+                    <div class="filters">
+                        <input type="text" id="searchFiles" placeholder="Search files..." onkeyup="filterFiles()">
+                        <select id="filterType" onchange="filterFiles()">
+                            <option value="all">All Types</option>
+                            <option value="pdf">PDF</option>
+                            <option value="image">Images</option>
+                            <option value="document">Documents</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div id="filesList" class="files-grid"></div>
+                </div>
+            </div>
+
+            <!-- Community Section -->
+            <div id="communitySection" class="section">
+                <div class="chat-container">
+                    <h2>💬 Community Chat</h2>
+                    <div id="chatMessages" class="chat-messages"></div>
+                    <div class="chat-input-container">
+                        <textarea id="chatInput" placeholder="Type your message..." rows="2"></textarea>
+                        <button onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profileSection" class="section">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-image-container">
+                            <img id="profileImage" src="" alt="Profile" class="profile-image">
+                            <button class="change-photo-btn" onclick="changeProfilePhoto()">📷 Change Photo</button>
+                            <input type="file" id="profilePhotoInput" accept="image/*" style="display:none" onchange="uploadProfilePhoto()">
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="profileName"></h2>
+                            <p id="profileUsername"></p>
+                            <p class="profile-role" id="profileRole"></p>
+                        </div>
+                    </div>
+
+                    <div class="badges-section">
+                        <h3>🏆 Badges</h3>
+                        <div id="badgesContainer" class="badges-container"></div>
+                    </div>
+
+                    <div class="stats-section">
+                        <div class="stat-card">
+                            <h4 id="uploadCount">0</h4>
+                            <p>Files Uploaded</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4 id="messageCount">0</h4>
+                            <p>Messages Sent</p>
+                        </div>
+                    </div>
+
+                    <div class="user-files-section">
+                        <h3>📁 My Uploads</h3>
+                        <div id="userFilesList" class="files-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadModal()">&times;</span>
+            <h2>Upload Study Material</h2>
+            <form id="uploadForm">
+                <input type="text" id="fileTitle" placeholder="Title" required>
+                <textarea id="fileDescription" placeholder="Description" rows="3"></textarea>
+                <select id="fileCategory" required>
+                    <option value="">Select Category</option>
+                    <option value="notes">Notes</option>
+                    <option value="assignment">Assignment</option>
+                    <option value="project">Project</option>
+                    <option value="reference">Reference Material</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="file" id="fileUpload" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
