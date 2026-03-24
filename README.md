@@ -1,6 +1,7 @@
 # 📚 StudyShare - Study Material Sharing Platform
 
 A complete full-stack web application for sharing study materials with community chat, user profiles, and admin controls.
+It now includes an **assembly learning toolkit** (`asm/`) for low-level systems study.
 
 ## 🌟 Features
 
@@ -42,6 +43,12 @@ StudyShare_App/
     ├── schema.sql    # Database schema
     ├── init_admin.js # Admin initialization
     └── README.md     # Database setup guide
+
+├── asm/              # Assembly language enrichment toolkit
+│   ├── x86_64/       # NASM sources
+│   ├── aarch64/      # ARM64 sources
+│   ├── build.sh      # Build helper
+│   └── README.md     # Assembly docs
 ```
 
 ## 🚀 Installation & Setup
