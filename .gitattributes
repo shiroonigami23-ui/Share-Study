@@ -1,0 +1,7 @@
+# Keep existing web app as retained legacy application layer.
+frontend/* linguist-vendored
+backend/server.js linguist-vendored
+backend/routes/* linguist-vendored
+backend/middleware/* linguist-vendored
+backend/config/* linguist-vendored
+database/* linguist-vendored
